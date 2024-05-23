@@ -1,0 +1,33 @@
+{
+    "content" : [
+        {
+            "id" : 1,
+            "one" : "NAVIGATION",
+            "two" : "Home",
+            "twoLink"  : "/",
+            "three" : "Products",
+            "threeLink" : "/products",
+            "four" : "Orders",
+            "fourLink" : "/orders"
+            
+        },
+        {
+            "id" : 2,
+            "one" : "GET TO KNOW US",
+            "two" : "About Us",
+            "twoLink" : "/about",
+            "three" : "Official Site",
+            "threeLink" : "https://www.bmw.in/en/index.html"
+        },
+        {
+            "id" : 3,
+            "one" : "CONNECT WITH US",
+            "two" : "Linkedin",
+            "twoLink" : "https://www.linkedin.com/in/himanshuoli/",
+            "three" : "Github",
+            "threeLink" : "https://github.com/himanshuoli18",
+            "four" : "Instagram",
+            "fourLink" : "https://www.instagram.com/himanshu_oli_18/"
+        }
+    ]
+}
