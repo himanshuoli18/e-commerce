@@ -12,30 +12,32 @@ import { Product } from "@prisma/client"
 import Image from "next/image"
 
 export function ProductForm({ product }: { product?: Product | null }) {
+  const isEdit = product != null;
+
   // Initialize priceInCents state with a valid number or 0
-  const [priceInCents, setPriceInCents] = useState<number>(product?.priceInCents ?? 0)
+  const [priceInCents, setPriceInCents] = useState<number>(product?.priceInCents ?? 0);
 
   // Handle input change for priceInCents
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setPriceInCents(value === '' ? 0 : Number(value))
-  }
+    const value = e.target.value;
+    setPriceInCents(value === '' ? 0 : Number(value));
+  };
 
   // Use useFormState to manage form state and actions
   const [error, action] = useFormState(
-    product == null ? addProduct : updateProduct.bind(null, product?.id),
+    isEdit ? updateProduct.bind(null, product?.id) : addProduct,
     {}
-  )
+  );
 
   // Define SubmitButton component
   function SubmitButton() {
-    const { pending } = useFormStatus()
+    const { pending } = useFormStatus();
 
     return (
       <Button type="submit" disabled={pending}>
         {pending ? "Saving..." : "Save"}
       </Button>
-    )
+    );
   }
 
   return (
@@ -82,16 +84,16 @@ export function ProductForm({ product }: { product?: Product | null }) {
       </div>
       <div className="space-y-2">
         <Label htmlFor="file">File</Label>
-        <Input type="file" id="file" name="file" required={product == null} />
-        {product != null && (
+        <Input type="file" id="file" name="file" required={!isEdit} />
+        {product?.filePath && (
           <div className="text-muted-foreground">{product.filePath}</div>
         )}
         {error.file && <div className="text-destructive">{error.file}</div>}
       </div>
       <div className="space-y-2">
         <Label htmlFor="image">Image</Label>
-        <Input type="file" id="image" name="image" required={product == null} />
-        {product != null && (
+        <Input type="file" id="image" name="image" required={!isEdit} />
+        {product?.imagePath && (
           <Image
             src={product.imagePath}
             width={500}
@@ -106,5 +108,5 @@ export function ProductForm({ product }: { product?: Product | null }) {
         <SubmitButton />
       </div>
     </form>
-  )
+  );
 }
