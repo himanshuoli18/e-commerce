@@ -18,7 +18,7 @@ export default function Testimonial() {
           <div className="mt-10 md:mt-0">
             <blockquote>
               <p className="text-4xl text-black">
-              Code is like humor. When you have to explain it, it's bad.
+              Code is like humor. When you have to explain it, it&apos;s bad.
               </p>
             </blockquote>
             <p className="mt-7 text-xl font-semibold text-black">Himanshu Oli</p>
