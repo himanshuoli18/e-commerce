@@ -5,7 +5,7 @@ import fc from "@/data/footerContent.json"
 export function Footer() {
   return (
     <footer className="w-full py-5 bg-black">
-        <hr className='w-48 h-1 mx-auto mb-4 bg-gray-100 border-0 rounded md:mb-10 dark:bg-gray-700'/>
+      <hr className='w-48 h-1 mx-auto mb-4 bg-gray-100 border-0 rounded md:mb-10 dark:bg-gray-700'/>
       <div className="mx-auto flex max-w-6xl flex-col items-start space-x-8 md:flex-row pb-6">
         <div className="w-full px-4 md:w-1/2 lg:px-0">
           <h1 className="max-w-sm text-3xl text-white font-bold">Subscribe to our Newsletter</h1>

@@ -2,7 +2,7 @@ import React from 'react'
 import profilephoto from '@/../public/aboutPage/profilephoto.jpeg'
 import Image from 'next/image';
 
-export default function TestimonialOne() {
+export default function Testimonial() {
   return (
     <section className="px-2 py-40 md:px-0 bg-white">
       <div className="mx-auto max-w-4xl">
@@ -18,7 +18,7 @@ export default function TestimonialOne() {
           <div className="mt-10 md:mt-0">
             <blockquote>
               <p className="text-4xl text-black">
-              Code is like humor. When you have to explain it, it’s bad.
+              Code is like humor. When you have to explain it, it's bad.
               </p>
             </blockquote>
             <p className="mt-7 text-xl font-semibold text-black">Himanshu Oli</p>

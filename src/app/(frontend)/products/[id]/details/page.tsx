@@ -81,7 +81,7 @@ export default async function ProductDetailsPage({params : { id }} : {params : {
                   color
                 </h3>
                 <ul className="colors -mr-3 flex flex-wrap">
-                  {['bg-black', 'bg-white', 'bg-green-700', 'bg-red-500'].map((color) => (
+                  {['bg-black', 'bg-white', 'bg-green-700', 'bg-red-500','bg-blue-500'].map((color) => (
                     <li
                       key={color}
                       className="text-heading mb-2 mr-2 flex h-9 w-9 cursor-pointer items-center justify-center rounded border border-gray-100 p-1 text-xs font-semibold uppercase transition duration-200 ease-in-out hover:border-black md:mb-3 md:mr-3 md:h-11 md:w-11 md:text-sm"
