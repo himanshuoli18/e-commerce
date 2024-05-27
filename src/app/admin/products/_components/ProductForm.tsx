@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -21,7 +23,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
 
   // Use useFormState to manage form state and actions
   const [error, action] = useFormState(
-    product == null ? addProduct : updateProduct.bind(null, product.id),
+    product == null ? addProduct : updateProduct.bind(null, product?.id),
     {}
   )
 
@@ -78,28 +80,28 @@ export function ProductForm({ product }: { product?: Product | null }) {
           <div className="text-destructive">{error.description}</div>
         )}
       </div>
-      {product && ( // Check if product is defined
-        <>
-          <div className="space-y-2">
-            <Label htmlFor="file">File</Label>
-            <Input type="file" id="file" name="file" required={product == null} />
-            <div className="text-muted-foreground">{product.filePath}</div>
-            {error.file && <div className="text-destructive">{error.file}</div>}
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="image">Image</Label>
-            <Input type="file" id="image" name="image" required={product == null} />
-            <Image
-              src={product.imagePath}
-              width={500}
-              height={500}
-              className="w-full h-auto"
-              alt="Product Image"
-            />
-            {error.image && <div className="text-destructive">{error.image}</div>}
-          </div>
-        </>
-      )}
+      <div className="space-y-2">
+        <Label htmlFor="file">File</Label>
+        <Input type="file" id="file" name="file" required={product == null} />
+        {product != null && (
+          <div className="text-muted-foreground">{product.filePath}</div>
+        )}
+        {error.file && <div className="text-destructive">{error.file}</div>}
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="image">Image</Label>
+        <Input type="file" id="image" name="image" required={product == null} />
+        {product != null && (
+          <Image
+            src={product.imagePath}
+            width={500}
+            height={500}
+            className="w-full h-auto"
+            alt="Product Image"
+          />
+        )}
+        {error.image && <div className="text-destructive">{error.image}</div>}
+      </div>
       <div className="flex justify-center">
         <SubmitButton />
       </div>
