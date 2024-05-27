@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation"
 import { NextRequest, NextResponse } from "next/server"
-import fs from "fs/promises"
 import db from "@/database/dbConfig"
 
 export async function GET(
@@ -9,19 +8,18 @@ export async function GET(
 ) {
   const product = await db.product.findUnique({
     where: { id },
-    select: { filePath: true, name: true },
+    select: { name: true },
   })
 
   if (product == null) return notFound()
 
-  const { size } = await fs.stat(product.filePath)
-  const file = await fs.readFile(product.filePath)
-  const extension = product.filePath.split(".").pop()
+  // Replace 'product.name' and 'product.extension' with actual values
+  const filename = `${product.name}.extension`
 
-  return new NextResponse(file, {
+  return new NextResponse(null, {
+    status: 200, // Or any other appropriate status code
     headers: {
-      "Content-Disposition": `attachment; filename="${product.name}.${extension}"`,
-      "Content-Length": size.toString(),
+      "Content-Disposition": `attachment; filename="${filename}"`,
     },
   })
 }

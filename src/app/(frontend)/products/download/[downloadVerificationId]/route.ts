@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server"
-import fs from "fs/promises"
 import db from "@/database/dbConfig"
 
 export async function GET(
@@ -10,21 +9,19 @@ export async function GET(
 ) {
   const data = await db.downloadVerification.findUnique({
     where: { id: downloadVerificationId, expiresAt: { gt: new Date() } },
-    select: { product: { select: { filePath: true, name: true } } },
+    select: { product: { select: { name: true } } }, // Select only the name of the product
   })
 
   if (data == null) {
     return NextResponse.redirect(new URL("/products/download/expired", req.url))
   }
 
-  const { size } = await fs.stat(data.product.filePath)
-  const file = await fs.readFile(data.product.filePath)
-  const extension = data.product.filePath.split(".").pop()
+  const filename = `${data.product.name}.extension`
 
-  return new NextResponse(file, {
+  return new NextResponse(null, {
+    status: 200, // Or any other appropriate status code
     headers: {
-      "Content-Disposition": `attachment; filename="${data.product.name}.${extension}"`,
-      "Content-Length": size.toString(),
+      "Content-Disposition": `attachment; filename="${filename}"`,
     },
   })
 }
