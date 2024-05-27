@@ -29,6 +29,9 @@ export function ProductForm({ product }: { product?: Product | null }) {
     {}
   );
 
+  // Ensure error object is always defined
+  const errorFields = error || {};
+
   // Define SubmitButton component
   function SubmitButton() {
     const { pending } = useFormStatus();
@@ -51,7 +54,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
           required
           defaultValue={product?.name || ""}
         />
-        {error.name && <div className="text-destructive">{error.name}</div>}
+        {errorFields.name && <div className="text-destructive">{errorFields.name}</div>}
       </div>
       <div className="space-y-2">
         <Label htmlFor="priceInCents">Price In Cents</Label>
@@ -66,8 +69,8 @@ export function ProductForm({ product }: { product?: Product | null }) {
         <div className="text-muted-foreground">
           {formatCurrency(priceInCents / 100)} {/* Ensure priceInCents is a number */}
         </div>
-        {error.priceInCents && (
-          <div className="text-destructive">{error.priceInCents}</div>
+        {errorFields.priceInCents && (
+          <div className="text-destructive">{errorFields.priceInCents}</div>
         )}
       </div>
       <div className="space-y-2">
@@ -78,8 +81,8 @@ export function ProductForm({ product }: { product?: Product | null }) {
           required
           defaultValue={product?.description || ""}
         />
-        {error.description && (
-          <div className="text-destructive">{error.description}</div>
+        {errorFields.description && (
+          <div className="text-destructive">{errorFields.description}</div>
         )}
       </div>
       <div className="space-y-2">
@@ -88,7 +91,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
         {product?.filePath && (
           <div className="text-muted-foreground">{product.filePath}</div>
         )}
-        {error.file && <div className="text-destructive">{error.file}</div>}
+        {errorFields.file && <div className="text-destructive">{errorFields.file}</div>}
       </div>
       <div className="space-y-2">
         <Label htmlFor="image">Image</Label>
@@ -102,7 +105,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
             alt="Product Image"
           />
         )}
-        {error.image && <div className="text-destructive">{error.image}</div>}
+        {errorFields.image && <div className="text-destructive">{errorFields.image}</div>}
       </div>
       <div className="flex justify-center">
         <SubmitButton />
