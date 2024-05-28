@@ -9,7 +9,7 @@ export default function Layout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-black">
       <div className="block-small-screens flex-grow">
         <Nav>
           <NavLink href="/">Home</NavLink>
