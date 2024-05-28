@@ -9,19 +9,17 @@ export default function Layout({
   children: React.ReactNode
 }>) {
   return (
-    <>
-      <div className="block-small-screens">
-        <div className="main-content">
-          <Nav>
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/products">Products</NavLink>
-            <NavLink href="/orders">Orders</NavLink>
-            <NavLink href="/about">About</NavLink>
-          </Nav>
-          <div className="bg-black">{children}</div>
-          <Footer />
-        </div>
+    <div className="flex flex-col min-h-screen">
+      <div className="block-small-screens flex-grow">
+        <Nav>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/products">Products</NavLink>
+          <NavLink href="/orders">Orders</NavLink>
+          <NavLink href="/about">About</NavLink>
+        </Nav>
+        <div className="bg-black flex-grow">{children}</div>
       </div>
-    </>
+      <Footer />
+    </div>
   )
 }
